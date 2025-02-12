@@ -2,6 +2,7 @@ package sideproject.cutly.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -30,4 +31,14 @@ public class ShortUrl {
 
     @Column(nullable = false)
     private Integer clickCount = 0;                 // 클릭 수
+
+    @Builder
+    public ShortUrl(String originalUrl, String shortCode) {
+        this.originalUrl = originalUrl;
+        this.shortCode = shortCode;
+    }
+
+    public void setClickCount(Integer clickCount) {
+        this.clickCount = clickCount;
+    }
 }
