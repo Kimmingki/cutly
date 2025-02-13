@@ -32,7 +32,15 @@ public class ShortUrl {
     private LocalDateTime createdAt;                // 생성 시간
 
     @Column(nullable = false)
+    private LocalDateTime expiresAt;                // 만료 시간 (생성 하루 뒤)
+
+    @Column(nullable = false)
     private Integer clickCount = 0;                 // 클릭 수
+
+    @PrePersist
+    public void prePersist() {
+        this.expiresAt = this.createdAt.plusDays(1);        // 생성 후 하루 뒤 만료
+    }
 
     @Builder
     public ShortUrl(String originalUrl, String shortCode) {

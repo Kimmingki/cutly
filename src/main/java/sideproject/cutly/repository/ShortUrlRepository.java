@@ -10,6 +10,9 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
     // 단축 코드로 URL 조회
     ShortUrl findByShortCode(String shortCode);
 
+    // 만료된 코드 삭제
+    void deleteByShortCode(String shortCode);
+
     // 클릭 수가 많은 URL 상위 10개 조회
     List<ShortUrl> findTop10ByOrderByClickCountDesc();
 }

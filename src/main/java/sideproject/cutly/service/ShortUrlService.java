@@ -8,6 +8,7 @@ import sideproject.cutly.domain.ShortUrl;
 import sideproject.cutly.repository.ShortUrlRepository;
 import sideproject.cutly.utils.Base62Encoder;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
@@ -50,7 +51,14 @@ public class ShortUrlService {
             return Optional.of(ShortUrl.builder().shortCode(shortCode).originalUrl(cachedUrl).build());
         }
 
-        return Optional.ofNullable(shortUrlRepository.findByShortCode(shortCode));
+        Optional<ShortUrl> shortUrlOptional = Optional.ofNullable(shortUrlRepository.findByShortCode(shortCode));
+
+        if (shortUrlOptional.isPresent() && shortUrlOptional.get().getExpiresAt().isBefore(LocalDateTime.now())) {
+            deleteExpiredUrl(shortCode);
+            return Optional.empty();
+        }
+
+        return shortUrlOptional;
     }
 
     // 단축 URL 클릭 수 증가
@@ -60,5 +68,11 @@ public class ShortUrlService {
         if (shortUrl != null) {
             shortUrl.setClickCount(shortUrl.getClickCount() + 1);
         }
+    }
+
+    @Transactional
+    public void deleteExpiredUrl(String shortCode) {
+        shortUrlRepository.deleteByShortCode(shortCode);
+        redisTemplate.delete(REDIS_PREFIX + shortCode);
     }
 }
