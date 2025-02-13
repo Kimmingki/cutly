@@ -30,12 +30,13 @@ public class ShortUrlController {
     @PostMapping("/shorten")
     public String shortenUrl(@RequestParam("originalUrl") String originalUrl, Model model) {
         String shortCode = shortUrlService.createShortUrl(originalUrl);
-        model.addAttribute("shortUrl", "http://cutly.io/" + shortCode);
+        model.addAttribute("shortUrl", "http://localhost:8080/" + shortCode);
 
         return "result";
     }
 
     // 단축 URL 리다이렉트
+    @GetMapping("/{shortCode}")
     public void redirectToOriginalUrl(@PathVariable("shortCode") String shortCode, HttpServletResponse response) throws IOException {
         Optional<ShortUrl> shortUrlOptional = shortUrlService.getShortUrl(shortCode);
 
