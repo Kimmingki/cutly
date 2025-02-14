@@ -20,3 +20,4 @@ spring:
 
 
 base62: ${BASE62}
+shortenUrl: http://localhost:8080/

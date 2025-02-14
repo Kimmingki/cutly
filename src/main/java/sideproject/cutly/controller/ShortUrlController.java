@@ -2,6 +2,7 @@ package sideproject.cutly.controller;
 
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,9 @@ public class ShortUrlController {
 
     private final ShortUrlService shortUrlService;
 
+    @Value("${shortenUrl}")
+    private String shortenUrl;
+
     // 메인 페이지 (URL 입력 화면)
     @GetMapping("/")
     public String showHomePage() {
@@ -30,7 +34,7 @@ public class ShortUrlController {
     @PostMapping("/shorten")
     public String shortenUrl(@RequestParam("originalUrl") String originalUrl, Model model) {
         String shortCode = shortUrlService.createShortUrl(originalUrl);
-        model.addAttribute("shortUrl", "http://localhost:8080/" + shortCode);
+        model.addAttribute("shortUrl", shortenUrl + shortCode);
 
         return "result";
     }
