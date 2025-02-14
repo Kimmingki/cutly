@@ -1,8 +1,10 @@
 package sideproject.cutly.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import sideproject.cutly.domain.ShortUrl;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
@@ -12,6 +14,9 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
 
     // 만료된 코드 삭제
     void deleteByShortCode(String shortCode);
+
+    @Query("select s.shortCode from ShortUrl s where s.expiresAt < :now")
+    List<String> findExpiredUrls(LocalDateTime now);
 
     // 클릭 수가 많은 URL 상위 10개 조회
     List<ShortUrl> findTop10ByOrderByClickCountDesc();
