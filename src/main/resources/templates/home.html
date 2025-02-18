@@ -10,5 +10,13 @@
         <input type="text" name="originalUrl" placeholder="단축할 URL을 입력하세요" required>
         <button type="submit">단축하기</button>
     </form>
+
+
+    <h2>단축 URL QR 코드 생성</h2>
+    <form method="get" action="/qrcode">
+        <label for="url">URL:</label>
+        <input type="text" id="url" name="url" required>
+        <button type="submit">QR 코드 보기</button>
+    </form>
 </body>
 </html>

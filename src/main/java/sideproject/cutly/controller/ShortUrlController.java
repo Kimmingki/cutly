@@ -5,11 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import sideproject.cutly.domain.ShortUrl;
+import sideproject.cutly.service.QrCodeService;
 import sideproject.cutly.service.ShortUrlService;
 
 import java.io.IOException;
@@ -20,6 +18,7 @@ import java.util.Optional;
 public class ShortUrlController {
 
     private final ShortUrlService shortUrlService;
+    private final QrCodeService qrCodeService;
 
     @Value("${shortenUrl}")
     private String shortenUrl;
@@ -51,5 +50,13 @@ public class ShortUrlController {
         } else {
             response.sendError(HttpServletResponse.SC_NOT_FOUND, "ShortUrl not found");
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/qrcode")
+    public void getQrCode(@RequestParam String url, HttpServletResponse response) throws IOException {
+        byte[] qrCodeImage = qrCodeService.generateQrCode(url, 250, 250);
+        response.setContentType("image/png");
+        response.getOutputStream().write(qrCodeImage);
     }
 }
