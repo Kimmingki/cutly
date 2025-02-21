@@ -1,0 +1,51 @@
+/* 기본 폰트 및 배경 설정 */
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* 컨테이너 크기 및 간격 */
+.container {
+    max-width: 600px;
+    margin-top: 50px;
+}
+
+/* 카드 디자인 */
+.card {
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 스타일 */
+h1 {
+    font-weight: 700;
+    color: #343a40;
+}
+
+/* 사용자 정의 버튼 */
+.btn-custom {
+    background-color: #4e73df;
+    color: white;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #2e59d9;
+}
+
+/* 입력 필드 포커스 효과 */
+.form-control:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* 결과 표시 */
+#shortenResult p, #qrCodeResult img {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
