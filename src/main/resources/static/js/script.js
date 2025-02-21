@@ -8,11 +8,9 @@ $(document).ready(function () {
         $.ajax({
             type: 'POST',
             url: '/shorten',
-            data: JSON.stringify(originalUrl),
+            data: JSON.stringify({originalUrl}),
             contentType: 'application/json',
             success: function (response) {
-                // 서버에서 반환된 단축 URL 사용
-                // const shortUrl = response.shortUrl || `https://cut.ly/${Math.random().toString(36).substr(2, 6)}`;
                 $('#shortUrl').text(response).attr('href', response);
                 $('#shortenResult').fadeIn();
             },

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sideproject.cutly.domain.ShortUrl;
+import sideproject.cutly.dto.OriginalUrlDTO;
 import sideproject.cutly.service.QrCodeService;
 import sideproject.cutly.service.ShortUrlService;
 
@@ -31,8 +32,8 @@ public class ShortUrlController {
     // URL 단축 처리
     @ResponseBody
     @PostMapping("/shorten")
-    public String shortenUrl(@RequestBody String originalUrl) {
-        String shortCode = shortUrlService.createShortUrl(originalUrl);
+    public String shortenUrl(@RequestBody OriginalUrlDTO dto) {
+        String shortCode = shortUrlService.createShortUrl(dto.getOriginalUrl());
 
         return shortenUrl + shortCode;
     }
