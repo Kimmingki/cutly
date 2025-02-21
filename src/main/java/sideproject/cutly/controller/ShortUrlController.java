@@ -4,7 +4,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import sideproject.cutly.domain.ShortUrl;
 import sideproject.cutly.service.QrCodeService;
@@ -30,12 +29,12 @@ public class ShortUrlController {
     }
 
     // URL 단축 처리
+    @ResponseBody
     @PostMapping("/shorten")
-    public String shortenUrl(@RequestParam("originalUrl") String originalUrl, Model model) {
+    public String shortenUrl(@RequestBody String originalUrl) {
         String shortCode = shortUrlService.createShortUrl(originalUrl);
-        model.addAttribute("shortUrl", shortenUrl + shortCode);
 
-        return "result";
+        return shortenUrl + shortCode;
     }
 
     // 단축 URL 리다이렉트

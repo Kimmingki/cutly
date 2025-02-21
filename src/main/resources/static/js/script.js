@@ -1,22 +1,36 @@
-// URL 단축 폼 제출 시 결과 표시 (모의 데이터 사용)
-document.getElementById('shortenForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+$(document).ready(function () {
+    // URL 단축 폼 처리
+    $('#shortenBtn').on('click', function (e) {
+        e.preventDefault();
 
-    const originalUrl = this.originalUrl.value;
-    const shortUrl = `https://cut.ly/${Math.random().toString(36).substr(2, 6)}`;
+        const originalUrl = $('input[name="originalUrl"]').val();
 
-    document.getElementById('shortUrl').textContent = shortUrl;
-    document.getElementById('shortUrl').href = shortUrl;
-    document.getElementById('shortenResult').style.display = 'block';
-});
+        $.ajax({
+            type: 'POST',
+            url: '/shorten',
+            data: JSON.stringify(originalUrl),
+            contentType: 'application/json',
+            success: function (response) {
+                // 서버에서 반환된 단축 URL 사용
+                // const shortUrl = response.shortUrl || `https://cut.ly/${Math.random().toString(36).substr(2, 6)}`;
+                $('#shortUrl').text(response).attr('href', response);
+                $('#shortenResult').fadeIn();
+            },
+            error: function () {
+                alert('URL 단축에 실패했습니다. 다시 시도해주세요.');
+            }
+        });
+    });
 
-// QR 코드 생성 폼 제출 시 결과 표시 (모의 QR 코드 사용)
-document.getElementById('qrForm').addEventListener('submit', function (event) {
-    event.preventDefault();
+    // QR 코드 생성 폼 처리
+    $('#qrForm').on('submit', function (e) {
+        e.preventDefault();
 
-    const url = this.url.value;
-    const qrCodeApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+        const url = $('#url').val();
+        const qrCodeApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
 
-    document.getElementById('qrCodeImage').src = qrCodeApi;
-    document.getElementById('qrCodeResult').style.display = 'block';
+        $('#qrCodeImage').attr('src', qrCodeApi);
+        $('#qrCodeResult').fadeIn();
+    });
+
 });
