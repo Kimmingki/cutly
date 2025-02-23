@@ -1,3 +1,6 @@
+server:
+  port: 8088
+
 spring:
   config:
     import: optional:file:.env[.properties]
@@ -20,4 +23,4 @@ spring:
 
 
 base62: ${BASE62}
-shortenUrl: http://localhost:8080/
+shortenUrl: ec2-15-164-169-191.ap-northeast-2.compute.amazonaws.com:8088/
