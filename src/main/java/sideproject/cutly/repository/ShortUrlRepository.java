@@ -17,7 +17,4 @@ public interface ShortUrlRepository extends JpaRepository<ShortUrl, Long> {
 
     @Query("select s.shortCode from ShortUrl s where s.expiresAt < :now")
     List<String> findExpiredUrls(LocalDateTime now);
-
-    // 클릭 수가 많은 URL 상위 10개 조회
-    List<ShortUrl> findTop10ByOrderByClickCountDesc();
 }
