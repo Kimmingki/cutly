@@ -30,6 +30,9 @@
                 </form>
                 <div id="shortenResult" class="mt-3 text-center" style="display: none;">
                     <p class="text-success">단축된 URL: <a href="#" id="shortUrl" target="_blank"></a></p>
+
+                    <button id="copyBtn" class="btn btn-outline-primary">📋 복사</button>
+                    <button id="shareBtn" class="btn btn-outline-secondary">🔗 공유</button>
                 </div>
             </div>
         </div>
@@ -48,7 +51,17 @@
                     </div>
                 </form>
                 <div id="qrCodeResult" class="mt-4 text-center" style="display: none;">
+                    <div id="qrLoading" class="spinner-border text-primary" role="status" style="display: none;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+
                     <img id="qrCodeImage" src="" alt="QR 코드" class="img-fluid rounded">
+
+                    <div class="mt-3">
+                        <button id="copyQrBtn" class="btn btn-outline-primary">📋 QR 복사</button>
+                        <button id="downloadQrBtn" class="btn btn-outline-success">📥 QR 다운로드</button>
+                        <button id="shareQrBtn" class="btn btn-outline-secondary">🔗 QR 공유</button>
+                    </div>
                 </div>
             </div>
         </div>
