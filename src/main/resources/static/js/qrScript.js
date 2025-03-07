@@ -4,6 +4,7 @@ $(document).ready(function () {
 
         const url = $('#url').val();
         const qrCodeApi = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(url)}`;
+        // const qrCodeApi = `/qrcode/generate?url=${encodeURIComponent(url)}`;
 
         // 로딩 아이콘 표시 및 기존 QR 코드 숨김
         $('#qrCodeResult').fadeIn();
