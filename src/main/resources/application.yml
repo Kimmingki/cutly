@@ -23,4 +23,4 @@ spring:
 
 
 base62: ${BASE62}
-shortenUrl: ec2-15-164-169-191.ap-northeast-2.compute.amazonaws.com:8088/
+shortenUrl: http://15.165.107.229:8080/
