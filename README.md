@@ -1,7 +1,7 @@
 # ✨ Cutly - 간편한 URL 단축 서비스
 📌 **공식 웹사이트:** [🔗 cutly.kr](http://cutly.kr)
 
-![Cutly Preview](resources/image/img.png)
+<img src="https://github.com/Kimmingki/cutly/blob/master/src/main/resources/static/image/img.png?raw=true" width="500px">
 
 ## 🚀 소개
 **Cutly**는 길고 복잡한 URL을 짧고 간편하게 변환해주는 **URL 단축 서비스**입니다.  
