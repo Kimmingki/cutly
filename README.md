@@ -1,5 +1,5 @@
 # ✨ Cutly - 간편한 URL 단축 서비스
-📌 **공식 웹사이트:** [🔗 cutly.kr](http://cutly.kr)
+📌 **공식 웹사이트:** [🔗 magicmk.kr](https://magicmk.kr)
 
 <img src="https://github.com/Kimmingki/cutly/blob/master/src/main/resources/static/image/img.png?raw=true" width="500px">
 
