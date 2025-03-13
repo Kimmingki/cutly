@@ -23,4 +23,4 @@ spring:
 
 
 base62: ${BASE62}
-shortenUrl: http://cutly.kr/
+shortenUrl: https://magicmk.kr/
